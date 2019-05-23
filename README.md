@@ -34,6 +34,5 @@ Input:
 MSG hdf5 files. 
 
 Output:
-    Image in png format
-    Geotiff file
+    Image in png format and a geotiff file
   
