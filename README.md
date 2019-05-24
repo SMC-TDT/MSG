@@ -17,7 +17,13 @@ R libraries:
 
 ## Usage
 ### read_hdf5:
-Modify, if desired, the configuration file: msg_read_hdf5_config.R
+Input: 
+MSG hdf5 files. 
+
+Output:
+Image in png format and a geotiff file
+
+First, modify, if desired, the configuration file: msg_read_hdf5_config.R
 
 #### Single file processing: #### 
 
@@ -31,9 +37,4 @@ Command line arguments:
 
     -p, --path_out: output path (will be created if it does not exist already)
 
-Input: 
-MSG hdf5 files. 
-
-Output:
-Image in png format and a geotiff file
   
