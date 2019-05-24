@@ -7,18 +7,19 @@ Currently, the repository includes:
 ## Dependencies
 
 R libraries:
-- rhdf5
-- raster
-- rgdal
-- rworldmap
 - oce
 - optparse
+- raster
+- rgdal
+- rgeos
+- rhdf5
+- rworldmap
 
 ## Usage
 ### read_hdf5:
 Modify, if desired, the configuration file: msg_read_hdf5_config.R
 
-*Single file processing:* 
+#### Single file processing: #### 
 
 Execute msg_read_hdf5.R:
 ~~~~
@@ -34,5 +35,5 @@ Input:
 MSG hdf5 files. 
 
 Output:
-    Image in png format and a geotiff file
+Image in png format and a geotiff file
   
