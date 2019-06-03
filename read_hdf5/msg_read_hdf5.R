@@ -10,22 +10,30 @@
 
 ###################################################################################################
 
-name_scr <- "msg_read_hdf5.R"
 name_fconf <- "msg_read_hdf5_config.R"
 name_ffuns <- "msg_read_hdf5_funs.R"
 
+## FUNCTIONS ######################################################################################
+
+script_path <- function(){
+  # Get the path of the current script
+  args <- commandArgs(trailingOnly = FALSE)
+  script_dir <- NULL
+  
+  if (any(grep("--slave", args))){
+    file <- gsub("--file=", "", args[grep("--file=", args)])
+    script_dir <- regmatches(file, regexpr("(\\/[[:graph:]]*\\/)*", file))
+  }else if (any(grep("--interactive", args))){
+    try(script_dir <- dirname(sys.frame(1)$ofile))
+  }
+  
+  return(script_dir)
+}
+
 ## INITIALIZATION #################################################################################
 
-# Get the path of the current script
-args <- commandArgs(trailingOnly = FALSE)
-script_dir <- NULL
-
-if (any(grep("--slave", args))){
-  file <- gsub("--file=", "", args[grep("--file=", args)])
-  script_dir <- gsub(name_scr, "", file)
-}else if (any(grep("--interactive", args))){
-  try(script_dir <- dirname(sys.frame(1)$ofile), silent=TRUE)
-}
+# Current script path
+script_dir <- script_path()
 
 # Load functions and user configuration
 file_funs <- paste(script_dir, name_ffuns, sep="/")
@@ -43,12 +51,8 @@ source(file_conf)
 
 ## INPUT ARGUMENTS ################################################################################
 
-# FOR TESTING from RStudio
-# args <- list("file_in"=paste0("/home/pav/Desktop/MSG_hdf5/data/",
-#                               "MSG3-SEVI-MSG15-0100-NA-20171018165740.354000000Z-20171018165757-1303506.h5"),
-#              "path_out"="/home/pav/Desktop/MSG_hdf5/img")
-
 args <- parse_cl()
+
 file_in <- args$file_in
 path_out <- args$path_out
 
